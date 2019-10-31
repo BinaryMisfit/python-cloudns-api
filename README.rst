@@ -1,3 +1,4 @@
 ClouDNS HTTP API Library (libcloudns)
 -------------------------------------
-Library wrapping the ClouDNS HTTP API to enable management of DNS hosted on ClouDNS
+Library wrapping the ClouDNS HTTP API to enable management
+of DNS hosted on [ClouDNS](https://cloudns.net)
