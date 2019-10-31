@@ -4,7 +4,7 @@ class Response:
         self.version = "0.0.1"
 
     def __repr__(self):
-        return ("<Response version={0}").format(self.version)
+        return ("<Response version={0}>").format(self.version)
 
     def __str__(self):
         return self.version
