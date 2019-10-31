@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-class Response(object):
+class Response:
     def __init__(self):
         self.version = "0.0.1"
 
