@@ -7,6 +7,6 @@ jobs:
       - image: python:3-slim
     steps:
       - checkout
-      - codecov/upload
+      - codecov/upload:
           file: {{ coverage_report_filepath }}
           token: ${CODECOV_TOKEN}
