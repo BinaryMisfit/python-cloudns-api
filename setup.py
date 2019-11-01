@@ -11,6 +11,7 @@ setup(name='libcloudns',
       version='0.0.1',
       description='ClouDNS HTTP API Library',
       long_description=readme(),
+      long_description_content_type='text/x-rst',
       classifiers=[
           'Development Status:: 2 - Pre-Alpha',
           'License :: OSI Approved :: GPLv3 ',
