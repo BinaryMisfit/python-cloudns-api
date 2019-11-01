@@ -27,6 +27,15 @@ jobs:
       - run:
           name: Run unit tests
           command: nosetests --with-coverage --with-xunit          --xunit-file="test-results/nodetests/results.xml"
+      - run:
+          name: Build packages
+          command: python setup.py sdist bdist_wheel
+      - run:
+          name: Validate packages
+          command: twine check dist/*
+      - run:
+          name: Uploading code coverage
+          command: codecov
       - store_test_results:
           path: test-results/
       - store_artifacts:
