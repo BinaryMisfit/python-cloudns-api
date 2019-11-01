@@ -1,0 +1,12 @@
+excluded_words:
+  - ClouDNS
+  - __init__
+  - anylint
+  - libcloudns
+  - mkdir
+  - nodetests
+  - pylint
+  - sudo
+  - testsuite
+  - testsuites
+  - usr

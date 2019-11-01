@@ -7,8 +7,26 @@ jobs:
     steps:
       - checkout
       - run:
-           name: Upgrade pip
-           command: sudo python -m pip install --upgrade pip
+           name: Preparing environment
+           shell: /bin/sh
+           command: |
+             mkdir -p test-results/nodetests
+             mkdir -p test-results/pylint
       - run:
-           name: Install pip requirements
-           command: sudo pip install -r requirements.txt
+          name: Upgrade pip
+          command: sudo python -m pip install --upgrade pip
+      - run:
+          name: Install pip requirements
+          command: sudo pip install -r requirements.txt
+      - run:
+          name: Run lint tests
+          shell: /bin/sh
+          command: |
+            pylint --output-format=pylint_junit.JUnitReporter --exit-zero libcloudns/ > test-results/pylint/results.xml
+            pylint libcloudns/
+      - store_test_results:
+          path: test-results/
+      - store_artifacts:
+          path: dist/
+      - store_artifacts:
+          path: test-results/
