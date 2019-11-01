@@ -1,12 +1,11 @@
 version: 2
 orbs:
-  codecov: codecov@1.0.2
+  codecov: codecov@1.0.4
 jobs:
   build:
     docker:
-      - image: python:3-slim
+      - image: circleci/python:3.8-buster
     steps:
       - checkout
-      - codecov/upload:
-          file: {{ coverage_report_filepath }}
-          token: ${CODECOV_TOKEN}
+      - run: sudo python -m pip install --upgrade pip
+      - run: sudo pip install -r requirements.txt
