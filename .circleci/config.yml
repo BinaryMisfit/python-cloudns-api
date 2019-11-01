@@ -23,8 +23,10 @@ jobs:
           shell: /bin/sh
           command: |
             pylint --output-format=pylint_junit.JUnitReporter --exit-zero libcloudns/ > test-results/pylint/results.xml
-            pylint libcloudns
+            pylint libcloudns/
       - store_test_results:
-          path: test-results
+          path: test-results/
       - store_artifacts:
           path: dist/
+      - store_artifacts:
+          path: test-results/
