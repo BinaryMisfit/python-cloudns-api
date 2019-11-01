@@ -13,7 +13,7 @@ jobs:
           command: sudo pip install -r requirements.txt
       - run:
           name: Run unit tests
-          command: nosetests --with-coverage --with-xunit
+          command: nosetests --with-coverage --with-xunit --xunit-file=test-results/nodetests/results.xml
       - run:
           name: Build distributable packages
           command: python setup.py sdist bdist_wheel
@@ -23,3 +23,5 @@ jobs:
       - run:
           name: Upload code coverage
           command: codecov
+      - store_test_results:
+          path: test-results
