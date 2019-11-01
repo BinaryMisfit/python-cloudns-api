@@ -13,7 +13,7 @@ jobs:
           command: sudo pip install -r requirements.txt
       - run:
           name: Run unit tests
-          command: nosetests --with-coverage
+          command: nosetests --with-coverage --with-xunit
       - run:
           name: Build distributable packages
           command: python setup.py sdist bdist_wheel
