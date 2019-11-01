@@ -1,5 +1,6 @@
 {
     "ignore": [
-        "setup.py"
+        "setup.py",
+        "test.xml"
     ]
 }
