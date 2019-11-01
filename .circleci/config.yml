@@ -1,6 +1,8 @@
 version: 2.1
+
 orbs:
   pylint: qventus/python-lint@0.0.6
+
 jobs:
   build:
     docker:
@@ -20,7 +22,7 @@ jobs:
       - pylint/lint
       - run:
            name: Run unit tests
-           command: nosetests --with-coverage --with-xunit --xunit-file=test-results/nodetests/results.xml
+           command: nosetests --with-coverage --with-xunit          --xunit-file="test-results/nodetests/results.xml"
        - run:
            name: Build distributable packages
            command: python setup.py sdist bdist_wheel
