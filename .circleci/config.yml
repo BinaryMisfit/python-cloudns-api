@@ -1,15 +1,33 @@
-version: 2
-orbs:
-  codecov: codecov@1.0.4
+version: 2.1
 jobs:
-  build:
-    docker:
-      - image: circleci/python:3.8-buster
-    steps:
-      - checkout
-      - run: sudo python -m pip install --upgrade pip
-      - run: sudo pip install -r requirements.txt
-      - run: nosetests --with-coverage
-      - run: python setup.py sdist bdist_wheel
-      - run: twine check dist/*
-      - run: codecov
+    build:
+        docker:
+            - image: circleci/python:3.8-buster
+        steps:
+            - checkout
+            - run:
+                  name: Preparing environment
+                  command: |
+                      mkdir -p test-results/nodetests
+            - run:
+                  name: Upgrade pip
+                  command: sudo python -m pip install --upgrade pip
+            - run:
+                  name: Install pip requirements
+                  command: sudo pip install -r requirements.txt
+            - run:
+                  name: Run unit tests
+                  command: nosetests --with-coverage --with-xunit --xunit-file=test-results/nodetests/results.xml
+            - run:
+                  name: Build distributable packages
+                  command: python setup.py sdist bdist_wheel
+            - run:
+                  name: Validate PiPy requirements
+                  command: twine check dist/*
+            - run:
+                  name: Upload code coverage
+                  command: codecov
+            - store_test_results:
+                  path: test-results
+            - store_artifacts:
+                  path: dist/
