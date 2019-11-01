@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
+"""Object containing the response from the ClouDNS API
+"""
 
 
 class Response:
+    """Object containing the response from the ClouDNS API
+    """
+
     def __init__(self):
         self.version = "0.0.1"
 
