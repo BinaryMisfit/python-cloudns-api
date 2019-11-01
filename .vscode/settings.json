@@ -3,5 +3,7 @@
         "cloudns",
         "libcloudns"
     ],
-    "restructuredtext.confPath": ""
+    "restructuredtext.confPath": "",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true
 }
