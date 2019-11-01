@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 from setuptools import setup
 
+
 def readme():
-      with open('README.rst') as f:
-            return f.read()
+    with open('README.rst') as f:
+        return f.read()
+
 
 setup(name='libcloudns',
       version='0.0.1',
@@ -21,5 +23,10 @@ setup(name='libcloudns',
       author_email="binarymisfit@digitalmisfit.net",
       license='GPLv3',
       packages=['libcloudns'],
+      test_suite='nose.collector',
+      test_require=['nose'],
+      entry_points={
+          'console_scripts': ['cloudns-api-version=libcloudns.command_line:main']
+      },
       include_package_data=True,
       zip_safe=False)
