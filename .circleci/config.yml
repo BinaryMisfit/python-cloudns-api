@@ -15,4 +15,7 @@ jobs:
       - run:
            name: Install pip requirements
            command: sudo pip install -r requirements.txt
-      - pylint/lint
+      - pylint/lint:
+          pyversion: 3.8.0
+          checkout: false
+          compare-to-pr-root: false
