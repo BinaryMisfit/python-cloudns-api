@@ -7,11 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
-           name: Preparing environment
-           shell: /bin/sh
-           command: |
-             mkdir -p test-results/nodetests
-             mkdir -p test-results/pylint
+          name: Preparing environment
+          shell: /bin/sh
+          command: |
+            mkdir -p test-results/nodetests
+            mkdir -p test-results/pylint
       - run:
           name: Upgrade pip
           command: sudo python -m pip install --upgrade pip
@@ -24,6 +24,18 @@ jobs:
           command: |
             pylint --output-format=pylint_junit.JUnitReporter --exit-zero libcloudns/ > test-results/pylint/results.xml
             pylint libcloudns/
+      - run:
+          name: Run unit tests
+          command: nosetests --with-coverage --with-xunit          --xunit-file="test-results/nodetests/results.xml"
+      - run:
+          name: Build packages
+          command: python setup.py sdist bdist_wheel
+      - run:
+          name: Validate packages
+          command: twine check dist/*
+      - run:
+          name: Uploading code coverage
+          command: codecov
       - store_test_results:
           path: test-results/
       - store_artifacts:
