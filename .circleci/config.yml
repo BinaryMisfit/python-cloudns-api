@@ -1,33 +1,36 @@
 version: 2.1
+orbs:
+      pylint: qventus/python-lint@0.0.6
 jobs:
-    build:
-        docker:
-            - image: circleci/python:3.8-buster
-        steps:
-            - checkout
-            - run:
-                  name: Preparing environment
-                  command: |
-                      mkdir -p test-results/nodetests
-            - run:
-                  name: Upgrade pip
-                  command: sudo python -m pip install --upgrade pip
-            - run:
-                  name: Install pip requirements
-                  command: sudo pip install -r requirements.txt
-            - run:
-                  name: Run unit tests
-                  command: nosetests --with-coverage --with-xunit --xunit-file=test-results/nodetests/results.xml
-            - run:
-                  name: Build distributable packages
-                  command: python setup.py sdist bdist_wheel
-            - run:
-                  name: Validate PiPy requirements
-                  command: twine check dist/*
-            - run:
-                  name: Upload code coverage
-                  command: codecov
-            - store_test_results:
-                  path: test-results
-            - store_artifacts:
-                  path: dist/
+      build:
+            docker:
+                  - image: circleci/python:3.8-buster
+            steps:
+                  - checkout
+                  - run:
+                          name: Preparing environment
+                          command: |
+                                mkdir -p test-results/nodetests
+                  - run:
+                          name: Upgrade pip
+                          command: sudo python -m pip install --upgrade pip
+                  - run:
+                          name: Install pip requirements
+                          command: sudo pip install -r requirements.txt
+                  - pylint/lint
+                  - run:
+                          name: Run unit tests
+                          command: nosetests --with-coverage --with-xunit --xunit-file=test-results/nodetests/results.xml
+                  - run:
+                          name: Build distributable packages
+                          command: python setup.py sdist bdist_wheel
+                  - run:
+                          name: Validate PiPy requirements
+                          command: twine check dist/*
+                  - run:
+                          name: Upload code coverage
+                          command: codecov
+                  - store_test_results:
+                          path: test-results
+                  - store_artifacts:
+                          path: dist/
