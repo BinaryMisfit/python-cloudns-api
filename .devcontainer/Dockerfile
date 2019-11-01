@@ -1,6 +1,6 @@
 FROM python:3
 ENV DEBIAN_FRONTEND=noninteractive
-COPY requirements.txt /tmp/pip-tmp/
+COPY ./.devcontainer/requirements.txt /tmp/pip-tmp/
 RUN apt-get update \
     && apt-get -y install --no-install-recommends \
     apt-utils \
