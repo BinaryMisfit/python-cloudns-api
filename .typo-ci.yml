@@ -2,10 +2,13 @@ excluded_words:
   - ClouDNS
   - __init__
   - anylint
+  - docstring
+  - init
   - libcloudns
   - mkdir
   - nodetests
   - pylint
+  - str
   - sudo
   - testsuite
   - testsuites
