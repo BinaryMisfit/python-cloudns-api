@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 """Command line functionality for ClouDNS APi
 """
-from .api_response import Response
 from .api_config import Config
 
 
 def build_version():
     """Build the output for the method
     """
-    response = Response()
-    result = "Response version: {0}".format(response.version)
-    return result
 
 
 def build_debug():

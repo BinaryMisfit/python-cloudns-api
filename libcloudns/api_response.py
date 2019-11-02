@@ -8,10 +8,12 @@ class Response:
     """
 
     def __init__(self):
-        self.version = "0.0.1"
+        self.response_code = 0
 
-    def __repr__(self):
-        return "<Response version={0}>".format(self.version)
+    def validate(self):
+        """Validate the response before parsing
+        """
 
-    def __str__(self):
-        return self.version
+    def parse(self):
+        """Parse the response and return state
+        """
