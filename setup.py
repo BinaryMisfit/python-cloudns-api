@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from setuptools import setup
+from setuptools.command.install import install
 
 
 def readme():
@@ -29,5 +30,8 @@ setup(name='libcloudns',
       entry_points={
           'console_scripts': ['cloudns-api-version=libcloudns.command_line:main']
       },
+      data_files=[
+          ('etc', ['libcloudns_rc'])
+      ],
       include_package_data=True,
       zip_safe=False)
