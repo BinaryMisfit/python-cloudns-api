@@ -8,10 +8,11 @@ class Config:
     """
 
     def __init__(self):
+        self.version = "0.0.1"
         self.config_file = 'libcloudns_rc'
 
     def __repr__(self):
-        return "<Config config_file={0}".format(self.config_file)
+        return "<Config version={0} config_file={1}>".format(self.version, self.config_file)
 
     def __str__(self):
         return self.config_file
