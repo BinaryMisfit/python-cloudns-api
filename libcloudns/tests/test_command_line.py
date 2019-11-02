@@ -21,5 +21,5 @@ class TestCommandLine(TestCase):
         """
         expected = command_line.build_version()
         with patch('sys.stdout', new=StringIO()) as output:
-            command_line.main()
+            command_line.show_version()
             self.assertEqual(output.getvalue().strip(), expected)

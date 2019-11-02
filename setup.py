@@ -28,7 +28,9 @@ setup(name='libcloudns',
       test_suite='nose.collector',
       test_require=['nose'],
       entry_points={
-          'console_scripts': ['cloudns-api-version=libcloudns.command_line:main']
+          'console_scripts':
+          ['cloudns-api-version=libcloudns.command_line:show_version',
+          'cloudns-api-info=libcloudns.command_line:show_debug' ]
       },
       data_files=[
           ('etc', ['libcloudns_rc'])

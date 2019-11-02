@@ -13,7 +13,17 @@ class TestConfig(TestCase):
         """Test output for class representation string
         """
         config = Config()
-        expected = "<Config version=0.0.1 config_file=libcloudns_rc>"
+        expected = """<Config version={0}
+        config_dir={1}
+        config_file={2}
+        user_config_dir={3}
+        user_config_file={4}>""".format(
+            config.version,
+            config.config_dir,
+            config.config_file,
+            config.user_config_dir,
+            config.user_config_file
+        )
         actual = repr(config)
         self.assertEqual(actual, expected)
 
@@ -21,7 +31,7 @@ class TestConfig(TestCase):
         """Test output for class string description
         """
         config = Config()
-        expected = "libcloudns_rc"
+        expected = "0.0.1"
         actual = str(config)
         self.assertEqual(actual, expected)
 
