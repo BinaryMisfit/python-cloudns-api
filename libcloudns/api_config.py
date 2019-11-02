@@ -13,23 +13,27 @@ class Config:
     def __init__(self):
         self.config_dir = ""
         self.config_file = "libcloudns_rc"
+        self.found_config = False
+        self.found_user = False
         self.user_config_dir = ""
         self.user_config_file = ".libcloudns_rc"
-        self.version = "0.0.1"
         self.find_config()
 
     def __repr__(self):
         """Return visual representation of object
         """
 
-        return """<Config version={0}
-        config_dir={1}
-        config_file={2}
-        user_config_dir={3}
-        user_config_file={4}>""".format(
-            self.version,
+        return """<Config
+        config_dir={0}
+        config_file={1}
+        found_config={2}
+        found_user={3}
+        user_config_dir={4}
+        user_config_file={5}>""".format(
             self.config_dir,
             self.config_file,
+            self.found_config,
+            self.found_user,
             self.user_config_dir,
             self.user_config_file
         )
@@ -38,7 +42,7 @@ class Config:
         """Return string representation of object
         """
 
-        return self.version
+        return self.found_user
 
     def find_config(self):
         """Find the required config files

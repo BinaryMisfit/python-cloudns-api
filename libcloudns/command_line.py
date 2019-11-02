@@ -8,10 +8,8 @@ from .api_config import Config
 def build_version():
     """Build the output for the method
     """
-    config = Config()
-    result = "Config version: {0}".format(config.version)
     response = Response()
-    result = "{0}\r\nResponse version: {1}".format(result, response.version)
+    result = "Response version: {0}".format(response.version)
     return result
 
 
