@@ -17,15 +17,13 @@ jobs:
             mkdir -p test-results/nodetests
             mkdir -p test-results/pylint
       - python/install-deps
-      - python-ci/run-with-coverage
       - run:
           name: Run lint tests
           shell: /bin/sh
           command: |
             pylint --output-format=pylint_junit.JUnitReporter --exit-zero libcloudns/ > test-results/pylint/results.xml
             pylint libcloudns/
-      - run:
-          name: Run unit tests
+      - python-ci/run-with-coverage:
           command: nosetests --with-coverage --with-xunit          --xunit-file="test-results/nodetests/results.xml"
       - run:
           name: Build packages
