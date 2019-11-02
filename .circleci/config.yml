@@ -1,4 +1,8 @@
 version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
+  python: circleci/python@0.2.1
+  python-ci: cjw296/python-ci@2.0.0
 
 jobs:
   build:
@@ -12,20 +16,14 @@ jobs:
           command: |
             mkdir -p test-results/nodetests
             mkdir -p test-results/pylint
-      - run:
-          name: Upgrade pip
-          command: sudo python -m pip install --upgrade pip
-      - run:
-          name: Install pip requirements
-          command: sudo pip install -r requirements.txt
+      - python/install-deps
       - run:
           name: Run lint tests
           shell: /bin/sh
           command: |
             pylint --output-format=pylint_junit.JUnitReporter --exit-zero libcloudns/ > test-results/pylint/results.xml
             pylint libcloudns/
-      - run:
-          name: Run unit tests
+      - python-ci/run-with-coverage:
           command: nosetests --with-coverage --with-xunit          --xunit-file="test-results/nodetests/results.xml"
       - run:
           name: Build packages
@@ -33,9 +31,7 @@ jobs:
       - run:
           name: Validate packages
           command: twine check dist/*
-      - run:
-          name: Uploading code coverage
-          command: codecov
+      - codecov/upload
       - store_test_results:
           path: test-results/
       - store_artifacts:
