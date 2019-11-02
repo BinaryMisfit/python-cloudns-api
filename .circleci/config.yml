@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Validate packages
           command: twine check dist/*
-      - codecov/codecov
+      - codecov/upload
       - store_test_results:
           path: test-results/
       - store_artifacts:
