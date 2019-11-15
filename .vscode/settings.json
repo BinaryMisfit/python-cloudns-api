@@ -2,9 +2,10 @@
     "cSpell.words": [
         "cloudns",
         "isfile",
-        "libcloudns"
+        "libcloudns",
+        "setuptools"
     ],
-    "restructuredtext.confPath": "",
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3"
 }
